@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var program = require('commander'),
+    path = require('path'),
+    fs = require('fs-extra');
+
+var utils = require('../lib/utils');
+
+program
+    .option('-a, --app', 'create application sample')
+    .option('-l, --lib', 'create library sample')
+    .option('-f, --force'  , 'force overwrite')
+    .parse(process.argv);
+
+var NAME_REG = /\{\{app_name\}\}/g;
+
+function exec() {
+    var appType = program.app ? 'application' : 'library',
+        appDir  = path.resolve(program.args[0] || '.'),
+        appName = path.basename(appDir),
+        srcDir = path.join(__dirname, '../template', appType);
+
+    if (!fs.existsSync(appDir)) {
+        fs.mkdirSync(appDir);
+    }
+
+    if (fs.readdirSync(appDir).length && !program.force) {
+        console.error('destination is not empty, abort it');
+        process.exit();
+    }
+
+    fs.copy(srcDir, appDir, function() {
+        utils.eachFiles(appDir, function(filePath) {
+            var fileContent = fs.readFileSync(filePath).toString();
+
+            if (NAME_REG.test(fileContent)) {
+                fileContent = fileContent.replace(NAME_REG, appName);
+                fs.writeFileSync(filePath, fileContent);
+            }
+
+            if (NAME_REG.test(filePath)) {
+                fs.renameSync(filePath, filePath.replace(NAME_REG, appName));
+            }
+        });
+    });
+}
+
+exec();

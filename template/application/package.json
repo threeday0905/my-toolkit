@@ -1,0 +1,35 @@
+{
+  "name": "{{app_name}}",
+  "version": "0.1.0",
+  "description": "{{app_name}} description",
+  "author": "Herman Lee <yuchiang.lyc@alibaba-inc.com>",
+  "main": "index.js",
+
+  "keywords": [
+
+  ],
+
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+
+  "dependencies": {
+
+  },
+  "devDependencies": {
+
+  },
+  "scripts": {
+
+  },
+  "engines": {
+    "node": ">= 0.11.0"
+  },
+
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  },
+
+  "license": "MIT"
+}
