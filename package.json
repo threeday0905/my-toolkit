@@ -1,0 +1,19 @@
+{
+  "name": "my-toolkit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "private executable scripts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "my": "./bin/my"
+  },
+  "author": "Herman Lee <threeday0905@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "*",
+    "fs-extra": "*"
+  }
+}
