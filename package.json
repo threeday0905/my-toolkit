@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "my": "./bin/my"
+    "my": "./bin/my",
+    "my-init": "./bin/my-init",
+    "my-setup": "./bin/my-setup"
   },
   "author": "Herman Lee <threeday0905@gmail.com>",
   "license": "MIT",

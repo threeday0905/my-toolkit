@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+
+'use strict';
+
+var program = require('commander'),
+    path = require('path'),
+    fs = require('fs-extra');
+
+program
+    .option('-a, --app', 'create application sample')
+    .option('-l, --lib', 'create library sample')
+    .option('-f, --force'  , 'force overwrite')
+    .parse(process.argv);
+
+function exec() {
+    var appDir = process.cwd(),
+        appType = program.app ? 'application' : 'library',
+        srcDir = path.join(__dirname, '../template', appType);
+
+    fs.readdirSync(srcDir).forEach(function(fileName) {
+        var filePath = path.join(srcDir, fileName),
+            targetPath = path.join(appDir, fileName);
+
+        if (!/^\./.test(fileName) || fileName === '.DS_Store') {
+            return;
+        } else if (!fs.statSync(filePath).isFile()) {
+            return;
+        }
+
+        fs.copySync(filePath, targetPath);
+        console.log('   %s has been setup.', fileName);
+    });
+
+    console.log('\ncompleted');
+}
+
+exec();

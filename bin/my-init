@@ -45,6 +45,8 @@ function exec() {
             }
         });
     });
+
+    console.log('init %s successfully', appType);
 }
 
 exec();
