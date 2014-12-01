@@ -18,10 +18,14 @@
 
   },
   "devDependencies": {
-
+    "chai": "*",
+    "istanbul": "*",
+    "jscs": "*",
+    "jshint": "*",
+    "mocha": "*"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "jscs {*.js,lib,test} & jshint . --exclude-path .gitignore & mocha 'test/**/*.test.js'"
   },
   "engines": {
     "node": ">= 0.11.0"
