@@ -18,14 +18,10 @@
 
   },
   "devDependencies": {
-    "chai": "*",
-    "istanbul": "*",
-    "jscs": "*",
-    "jshint": "*",
-    "mocha": "*"
+
   },
   "scripts": {
-    "test": "jscs {*.js,lib,test} & jshint . --exclude-path .gitignore & mocha --harmony 'test/**/*.test.js'"
+    "start": "node bin/app"
   },
   "engines": {
     "node": ">= 0.11.0"
